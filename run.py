@@ -6,7 +6,7 @@ import cv2
 import numpy as np
 import concurrent.futures
 import random
-from collections import defaultdict
+from collections import defaultdict 
 
 # 設定影像資料夾與 caption 檔案路徑
 train_root = r"C:\Users\ZIA\Desktop\coad\data\COAD\train"
