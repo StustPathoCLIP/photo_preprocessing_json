@@ -6,26 +6,12 @@ import cv2
 import numpy as np
 import concurrent.futures
 import random
-from collections import defaultdict 
-
-# 設定影像資料夾與 caption 檔案路徑
-train_root = r"C:\Users\ZIA\Desktop\coad\data\COAD\train"
-md_root = r"C:\Users\ZIA\Desktop\coad\data\COAD\md"
-output_json = r"C:\Users\ZIA\Desktop\coad\data\COAD\annotations\train_caption_tcgaCOAD.json"
-import os
-import re
-import json
-import shutil
-import cv2
-import numpy as np
-import concurrent.futures
-import random
 from collections import defaultdict
 
 # 設定影像資料夾與 caption 檔案路徑
-train_root = r"C:\Users\ZIA\Desktop\coad\data\COAD\train"
-md_root = r"C:\Users\ZIA\Desktop\coad\data\COAD\md"
-output_json = r"C:\Users\ZIA\Desktop\coad\data\COAD\annotations\train_caption_tcgaCOAD.json"
+train_root = r"C:\Users\user\Desktop\coad\data\COAD\train"
+md_root = r"C:\Users\user\Desktop\coad\data\COAD\md"
+output_json = r"C:\Users\user\Desktop\coad\data\COAD\annotations\train_caption_tcgaCOAD.json"
 
 # ===============================
 # Step 1: 重新命名影像資料夾 (image_folder_name.py)
