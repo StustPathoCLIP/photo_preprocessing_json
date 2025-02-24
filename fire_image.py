@@ -7,7 +7,7 @@ import concurrent.futures
 import random
 
 # === 設定參數 ===
-TARGET_DIR = r"C:\Users\ZIA\Desktop\coad\data\COAD\train"  # 來源資料夾（要篩選的資料夾）
+TARGET_DIR = r"C:\Users\user\Desktop\coad\data\COAD\train"  # 來源資料夾（要篩選的資料夾）
 TARGET_IMAGE_COUNT = 200  # 每組 TCGA-XX-XXXX 保留 200 張圖片
 DELETE_EMPTY_FOLDERS = True  # 是否刪除空資料夾
 REMOVE_FULL_WHITE = True  # 是否強制刪除 99% 以上全白的圖片
@@ -72,12 +72,27 @@ def delete_empty_images(root_dir):
 
 def check_and_delete_image(img_path):
     """
-    若圖片為全白，則刪除
+    若圖片大小非 256x256，則刪除。
+    若圖片為全白（白色比例 >= 99%），則刪除。
     """
+    # 先讀取圖片來檢查大小
+    image = cv2.imread(img_path)
+    if image is None:
+        print(f"❌ 無法讀取圖片或不存在: {img_path}")
+        os.remove(img_path)
+        return
+
+    if image.shape[0] != 256 or image.shape[1] != 256:
+        print(f"❌ 刪除非 256x256 圖片: {img_path}（大小: {image.shape[0]}x{image.shape[1]}）")
+        os.remove(img_path)
+        return
+
+    # 接著再計算白色比例，若超過 99%，也刪除
     white_ratio = calculate_white_ratio(img_path)
     if REMOVE_FULL_WHITE and white_ratio >= 99:
         print(f"❌ 刪除全白圖片: {img_path}（白色比例 {white_ratio:.2f}%）")
         os.remove(img_path)
+
 
 def copy_image(old_path, new_path):
     """
