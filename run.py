@@ -193,7 +193,7 @@ for folder in sorted(os.listdir(train_root)):
             annotation = {
                 "image_id": new_image_id,
                 "id": annotation_id,
-                "caption": captions[base_image_id]
+                "caption": captions[base_image_id] + " <EOS>"
             }
             annotations.append(annotation)
             annotation_id += 1
